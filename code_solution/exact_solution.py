@@ -1,4 +1,5 @@
 from itertools import product
+
 """
 name: Elizabeth Johnson
 """
@@ -20,6 +21,7 @@ def main():
 
     # for each combination, check how many clauses evaluate to true
     for combo in combos:
+
         vertSet = {} # set of the vertices when they first appear to keep track of the combo will have set [1, -2, 3]
         isClauseTrue = [] # holds whether each clause is true or false
         for clause in clauses:
@@ -30,20 +32,18 @@ def main():
 
                 if vertSet[abs(vertex)] == vertex: # the vertex has the same cardinality as the first occuring instance
                     isTrue = isTrue or combo[abs(vertex) - 1]
-                else:
+                else: # vertex is negation
                     isTrue = isTrue or not combo[abs(vertex) - 1]
 
             isClauseTrue.append(isTrue)
 
         # after all the clauses are done, count how many report to true
-        count_true_clauses = sum(1 if x else 0 for x in isClauseTrue)
+        count_true_clauses = sum(1 if x is True else 0 for x in isClauseTrue)
 
         # if more of the clauses are true than before, save new max and combo
         if count_true_clauses > maxClausesAreTrue:
             maxClausesAreTrue = count_true_clauses
             maxClauseCombo = combo
-            if count_true_clauses == numClauses:
-                break
 
     # print the max number of clauses that are true
     print(maxClausesAreTrue)
