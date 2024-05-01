@@ -1,7 +1,7 @@
 # run all exact solution test cases that don't take too long
 exact_short ()
     {
-        echo "----EXACT_SOLUTION_TESTS----"
+        echo "----EXACT_SOLUTION_TESTS-_SHORT----"
 
         # run the sample input on exact solution to an output file and diff the results
         python ../exact_solution.py < inputs/sampleInput.txt > outputs/sampleOutput.txt
@@ -44,4 +44,9 @@ exact_short ()
         fi
 
         echo ""
+    }
+
+exact_long()
+    {
+
     }
