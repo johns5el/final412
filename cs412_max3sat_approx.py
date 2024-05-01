@@ -13,10 +13,7 @@ def karloff_zwick_max_3sat(clauses, num_vars):
     # Function to evaluate a literal under the current assignment
     def evaluate_literal(literal):
         var = abs(literal)
-        if literal > 0:
-            return assignment[var]
-        else:
-            return not assignment[var]
+        return assignment[var] if literal > 0 else not assignment[var]
 
     # Count the number of satisfied clauses
     satisfied_count = 0
@@ -26,15 +23,21 @@ def karloff_zwick_max_3sat(clauses, num_vars):
 
     return assignment[1:], satisfied_count
 
-# Example usage
-clauses = [
-    [1, -2, 3],
-    [-1, 2, -3],
-    [1, -2, -3],
-    [1, 2, 3]
-]
-num_vars = 3
+def main():
+    import sys
+    input = sys.stdin.read
+    data = input().splitlines()
+    n, m = map(int, data[0].split())
+    clauses = [list(map(int, line.split())) for line in data[1:m+1]]
 
-assignment, satisfied = karloff_zwick_max_3sat(clauses, num_vars)
-print("Assignment:", assignment)
-print("Number of satisfied clauses:", satisfied)
+    # Get the solution
+    assignment, satisfied = karloff_zwick_max_3sat(clauses, n)
+
+    # Output the number of satisfied clauses
+    print(satisfied)
+    # Output the assignment of each variable
+    for i, a in enumerate(assignment, 1):
+        print(f"{i} {'T' if a else 'F'}")
+
+if __name__ == '__main__':
+    main()
