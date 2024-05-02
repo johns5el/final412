@@ -12,6 +12,7 @@ chmod u+x run_test_cases.sh
 
 Note: you have to run the script with one or more options:
 - "-e" runs the short exact solution test cases
+- "-l" runs the long exact solution test cases
 - "-p" runs the short approximate solution test cases
 - "-a" runs the short exact and approximate solution test cases
 
